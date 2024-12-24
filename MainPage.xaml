@@ -1,0 +1,62 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBazaSportiva.MainPage"
+             Title="Baza Sportiva">
+                
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="20"
+            Spacing="20">
+            <Label Text="Baza Sportiva Gheorgheni"
+                   FontSize="30"
+                   HorizontalOptions="Center"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   TextColor="DarkOrange"
+/>
+            <Image
+                Source="dji_0972_1.jpg"
+                HeightRequest="200"
+                Aspect="AspectFit"
+                SemanticProperties.Description="Baza sportiva vazuta cu ajutorul unei drone" />
+
+            <Label
+                Text="Bine ati venit pe pagina principala!"
+                FontSize="19"
+                TextColor="Gray"
+                HorizontalTextAlignment="Center"
+                Style="{StaticResource Headline}"
+                />
+
+            <Label
+                Text="Informatii despre baza sportiva"
+                FontSize="20"
+                FontAttributes="Bold"
+                TextColor="DarkBlue"
+                Style="{StaticResource SubHeadline}"
+                />
+            <VerticalStackLayout Spacing="10">
+                <Label Text="Adresa:Strada Alexandru Vaida-Voievod,judetul Cluj,Cartierul Gheorgheni"
+       FontSize="16"
+       TextColor="Black"/>
+                <Label Text="Program:Luni-Duminica intre orele 8:00 si 22:00"
+       FontSize="16"
+       TextColor="Black"/>
+            </VerticalStackLayout>
+            <Button
+                x:Name="CounterBtn"
+                Text="Vezi mai multe detalii" 
+                SemanticProperties.Hint="Afiseaza mai multe informatii despre baza sportiva"
+                Clicked="OnCounterClicked"
+                HorizontalOptions="Fill"
+                 BackgroundColor="DarkOrange"
+                TextColor="White"
+                FontAttributes="Bold"
+                CornerRadius="10"
+                />
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

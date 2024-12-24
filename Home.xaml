@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBazaSportiva.Home"
+             Title="Home">
+    <VerticalStackLayout Spacing="10" Margin="10">
+        <HorizontalStackLayout Spacing="10">
+            <Image Source="dji_0972_1.jpg"
+ SemanticProperties.Description="Baza sportiva"
+HeightRequest="64" />
+            <Label FontSize="25" FontAttributes="Bold" Text="Aplicatie web" VerticalOptions="End" />
+            <Label FontSize="25" Text="v1.0" VerticalOptions="End" />
+        </HorizontalStackLayout>
+        <Label Text="Această aplicație va facilita accesul și gestionarea participării la activitățile desfășurate într-o bază sportivă, oferind utilizatorilor posibilitatea de a se înregistra, rezerva facilități și monitoriza programul de activități disponibile." />
+
+    </VerticalStackLayout>
+</ContentPage>
