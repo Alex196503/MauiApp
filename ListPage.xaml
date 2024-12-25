@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBazaSportiva.ListPage"
+             Title="ListPage">
+    <StackLayout Margin="20">
+        <Entry Placeholder="Introduceti prenumele"
+               Text="{Binding FirstName}"
+               HeightRequest="50" />
+
+        <Entry Placeholder="Introduceti numele"
+               Text="{Binding LastName}"
+               HeightRequest="50" />
+
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Save"
+ Clicked="OnSaveButtonClicked" />
+            <Button Grid.Column="1"
+ Text="Delete"
+ Clicked="OnDeleteButtonClicked"/>
+        </Grid>
+    </StackLayout>
+</ContentPage>
