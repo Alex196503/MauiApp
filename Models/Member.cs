@@ -4,22 +4,24 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using SQLite;
+using SQLiteNetExtensions.Attributes;
 namespace MauiAppBazaSportiva.Models
 {
     public class Member
     {
         [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-        [MaxLength(100),Unique]
+        [MaxLength(100)]
         public string FirstName { get; set; }
-        [MaxLength (100),Unique]
+        [MaxLength (100)]
         public string LastName { get; set; }
-        [MaxLength (100),Unique]
+        [MaxLength (100)]
         public string Email { get; set; }
 
         public int Age { get; set; }
-            public string FullName => $"{FirstName} {LastName}";
-
+        [ForeignKey(typeof(Membership))]
+        public int MembershipID { get; set; }
+        
 
     }
 }

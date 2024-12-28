@@ -15,10 +15,12 @@ public partial class PaginaIntrariMembri : ContentPage
     }
     async void OnMemberAddedClicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new ListPage
         {
-            BindingContext = new Member()
-        });
+            await Navigation.PushAsync(new ListPage
+            {
+                BindingContext = new Member()
+            });
+        }
     }
     async void OnListViewItemSelected(object sender, SelectedItemChangedEventArgs e)
     {
