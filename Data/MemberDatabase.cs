@@ -17,6 +17,7 @@ namespace MauiAppBazaSportiva.Data
             _database= new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Member>().Wait();
             _database.CreateTableAsync<Membership>().Wait();
+            _database.CreateTableAsync<Trainer>().Wait();
         }
         public Task <int> SaveMembershipAsync(Membership membership)
         {
@@ -72,6 +73,7 @@ namespace MauiAppBazaSportiva.Data
         "INNER JOIN Member M ON M.MembershipID = membership.ID " +  
         "WHERE M.ID = ?", memberid);
         }
+      
 
     }
     

@@ -16,6 +16,7 @@ public partial class ListPage : ContentPage
             return;
         }
         await App.Database.SaveMemberAsync(member);
+
         await Navigation.PopAsync();
     }
     async void OnDeleteButtonClicked(object sender, EventArgs e)
@@ -27,15 +28,27 @@ public partial class ListPage : ContentPage
     async void OnChooseButtonClicked(object sender, EventArgs e)
     {
         var member = BindingContext as Member;
-        if(member!=null)
+        if (member != null)
         {
-            await Navigation.PushAsync(new MembershipPage());
+            var membershipPage = new MembershipPage(new Membership());
+            await Navigation.PushAsync(membershipPage);
+            membershipPage.Disappearing += async (s, args) =>
+            {
+                if (membershipPage.SelectedMembership != null)
+                {
+                    member.MembershipID = membershipPage.SelectedMembership.ID;
+                    await App.Database.SaveMemberAsync(member);
+                    await DisplayAlert("Succes", "Abonamentul a fost asociat membrului.", "OK");
+                    listView.ItemsSource = await App.Database.GetMembersAsync(member.MembershipID);
+                }
+            };
         }
         else
         {
             await DisplayAlert("Error", "BindingContext nu este setat ca Membru.", "OK");
         }
     }
+
     protected override async void OnAppearing()
     {
         base.OnAppearing();
@@ -49,5 +62,6 @@ public partial class ListPage : ContentPage
             await DisplayAlert("Error", "BindingContext nu e setat catre un membru", "OK");
         }
     }
+
 
 }

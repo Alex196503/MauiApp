@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks; 
+using System.Threading.Tasks;
+
 namespace MauiAppBazaSportiva
 {
-    public class ValidationBehaviour : Behavior<Editor>
+     class ValidationBehaviour:Behavior<Editor>
     {
         protected override void OnAttachedTo(Editor entry)
         {

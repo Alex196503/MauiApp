@@ -15,7 +15,8 @@ namespace MauiAppBazaSportiva.Models
         public string Name { get; set; }
         public string PhoneNumber { get; set; }
         public string Specialization { get; set; }
-        
+        [OneToMany]
+        public List <Member> Members { get; set; }
 
     }
 }

@@ -4,15 +4,15 @@ namespace MauiAppBazaSportiva;
 
 public partial class MembershipPage : ContentPage
 {
-	 
-	public MembershipPage()
+
+	public Membership SelectedMembership { get; set; }
+  public MembershipPage(Membership membership=null)
 	{
+
 		InitializeComponent();
-        if (BindingContext == null)
-        {
-            BindingContext = new Membership(); 
-        }
+		BindingContext = membership ?? new Membership();
     }
+
     async void OnSaveButtonClicked(object sender, EventArgs e)
     {
 
@@ -48,6 +48,10 @@ public partial class MembershipPage : ContentPage
 			var member = new Member()
 			{
 			};
+			if(selectedMembership.Members==null)
+			{
+				selectedMembership.Members = new List<Member>();
+			}
 			await App.Database.SaveMemberAsync(member);
 			selectedMembership.Members ??= new List<Member>();
 			selectedMembership.Members.Add(member);

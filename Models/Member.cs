@@ -21,7 +21,14 @@ namespace MauiAppBazaSportiva.Models
         public int Age { get; set; }
         [ForeignKey(typeof(Membership))]
         public int MembershipID { get; set; }
-        
 
+        [ForeignKey(typeof(Trainer))]
+        public int TrainerID { get; set; }
+        [ManyToOne]
+        public Membership Membership { get; set; }
+        [ManyToOne]
+        public Trainer Trainer { get; set; }
+
+            
     }
 }
