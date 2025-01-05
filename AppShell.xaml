@@ -14,8 +14,7 @@
         <ShellContent Title="Despre"
                       ContentTemplate="{DataTemplate local:Home}"
 />
-        <ShellContent Title="Membrii inregistrati la baza de date"
-                      ContentTemplate="{DataTemplate local:PaginaIntrariMembri}"/>
+   
     </TabBar>
 
 </Shell>
