@@ -34,7 +34,7 @@ IsRefreshing="True" >
                     </ListView>
                 </ScrollView>
                 <Button Grid.Row="2" Grid.Column="0" Text="Adauga in lista abonamentelor"
-MaximumWidthRequest="200"
+MaximumWidthRequest="350"
  Clicked="OnAddButtonClicked" />
             </Grid>
         </StackLayout>

@@ -2,9 +2,15 @@ namespace MauiAppBazaSportiva;
 using MauiAppBazaSportiva.Models;
 public partial class ListPage : ContentPage
 {
-	public ListPage()
+    public string LastName { get; set; }
+    public string FirstName { get; set; }
+    public Membership Membership { get; set; } 
+    public Trainer Trainer { get; set; }
+    public string Specialization { get; set; }
+    public ListPage()
 	{
 		InitializeComponent();
+        BindingContext = this;
 	}
     async void OnSaveButtonClicked(object sender, EventArgs e)
     {
@@ -31,9 +37,24 @@ public partial class ListPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+
         var member = (Member)BindingContext;
 
-        listView.ItemsSource = await App.Database.GetMemberMembershipsAsync(member.ID);
+        var membershipsTask = App.Database.GetMemberMembershipsAsync(member.ID);
+        var trainersTask = App.Database.GetMemberTrainersAsync(member.ID);
+        await Task.WhenAll(membershipsTask, trainersTask);
+        listView.ItemsSource = await membershipsTask;
+        listViewTrainer.ItemsSource = await trainersTask;
     }
 
+    async void OnChooseButtonClickedTrainer(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new TrainerPage((Member)
+       this.BindingContext)
+        {
+            BindingContext = new Trainer()
+        });
+
+    }
+    
 }

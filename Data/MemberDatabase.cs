@@ -74,8 +74,34 @@ namespace MauiAppBazaSportiva.Data
      "WHERE MB.ID = ?",
      memberid);
         }
+        public Task<int> SaveTrainerAsync(Trainer trainer)
+        {
+            if (trainer.ID != 0)
+            {
+                return _database.UpdateAsync(trainer);
+            }
+            else
+            {
+                return _database.InsertAsync(trainer);
+            }
+        }
+        public Task<int> DeleteTrainerAsync(Trainer trainer)
+        {
+            return _database.DeleteAsync(trainer);
+        }
+        public Task<List<Trainer>> GetTrainersAsync()
+        {
+            return _database.Table<Trainer>().ToListAsync();
+        }
+        public Task <List<Trainer>>GetMemberTrainersAsync(int memberid)
+        {
+            return _database.QueryAsync<Trainer>("select T.ID, T.Name, T.Specialization from Trainer T "
+                                        + "inner join Member M "
+                                        + "on T.ID = M.TrainerID where M.ID = ?", memberid);
 
+        }
     }
 }
+
     
 

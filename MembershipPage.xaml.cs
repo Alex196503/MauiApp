@@ -43,7 +43,7 @@ public partial class MembershipPage : ContentPage
         }
         else
         {
-            await DisplayAlert("Eroare", "Selecta?i un abonament înainte de a continua.", "OK");
+            await DisplayAlert("Eroare", "Selectati un abonament înainte de a continua.", "OK");
         }
     }
 

@@ -23,9 +23,9 @@ namespace MauiAppBazaSportiva.Models
         public Membership Membership { get; set; }
 
         [SQLiteNetExtensions.Attributes.ForeignKey(typeof(Trainer))]
+        public int TrainerID { get; set; }
         [ManyToOne]
         public Trainer Trainer { get; set; }
-        public int TrainerID { get; set; }
         public string Name => $"{FirstName} {LastName}";
 
     }
