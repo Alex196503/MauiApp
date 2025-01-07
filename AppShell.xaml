@@ -14,7 +14,10 @@
         <ShellContent Title="Despre"
                       ContentTemplate="{DataTemplate local:Home}"
 />
-   
+        <ShellContent
+ Title="Membrii bazei sportive"
+ ContentTemplate="{DataTemplate local:IntrariMembri}"
+ />
     </TabBar>
 
 </Shell>

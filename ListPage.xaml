@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:MauiAppBazaSportiva"
+             x:Class="MauiAppBazaSportiva.ListPage"
+             Title="ListPage">
+    <StackLayout Margin="20">
+        <Editor Placeholder="Introduceti numele membrului"
+                Text="{Binding LastName}"
+                HeightRequest="100">
+            <Editor.Behaviors>
+                <local:ValidationBehaviour />
+            </Editor.Behaviors>
+        </Editor>
+
+        <Editor Placeholder="Introduceti prenumele membrului"
+                Text="{Binding FirstName}"
+                HeightRequest="100">
+            <Editor.Behaviors>
+                <local:ValidationBehaviour />
+            </Editor.Behaviors>
+        </Editor>
+
+        <Grid Margin="0,10,0,10">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Button Text="Save"
+                    Clicked="OnSaveButtonClicked" />
+            <Button Grid.Column="1"
+                    Text="Delete"
+                    Clicked="OnDeleteButtonClicked" />
+        </Grid>
+        <Grid Margin="0,10,0,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0" Grid.Column="0" VerticalOptions="Center">
+                <Label Text="Abonament selectat:" 
+                       FontAttributes="Bold" 
+                       VerticalOptions="Center" />
+            </Grid>
+            <Grid Grid.Row="0" Grid.Column="1" VerticalOptions="Center">
+                <Label Text="{Binding Membership.Name}" 
+                       VerticalOptions="Center" />
+            </Grid>
+            <ListView Grid.Row="1" Grid.Column="1"
+                      x:Name="listView"
+                      Margin="10,0,0,0"
+                      VerticalOptions="Center"
+                      ItemsSource="{Binding Membership}" 
+                      SelectedItem="{Binding Membership}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </Grid>
+
+        <Button Text="Adauga sau alege un abonament"
+                MaximumWidthRequest="300"
+                Margin="0,20"
+                Clicked="OnChooseButtonClicked" />
+    </StackLayout>
+</ContentPage>

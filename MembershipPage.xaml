@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="MauiAppBazaSportiva.MembershipPage"
+             Title="MembershipPage">
+    <ContentPage.Content>
+        <StackLayout Margin="20">
+            <Editor Placeholder="Introduceti numele abonamentului" Margin="20"
+ Text="{Binding Name}"
+ HeightRequest="50" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="Auto" />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Text="Salveaza abonamentul" MaximumWidthRequest="200"
+ Clicked="OnSaveButtonClicked" />
+                <Button Grid.Column="1"
+ Text="Sterge abonamentul" MaximumWidthRequest="200"
+ Clicked="OnDeleteButtonClicked"/>
+                <ScrollView Grid.Row="1" Grid.ColumnSpan="2" Margin="10,20,10,10">
+                    <ListView x:Name="listView"
+IsRefreshing="True" >
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <TextCell Text="{Binding Name}" />
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </ScrollView>
+                <Button Grid.Row="2" Grid.Column="0" Text="Adauga in lista abonamentelor"
+MaximumWidthRequest="200"
+ Clicked="OnAddButtonClicked" />
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
