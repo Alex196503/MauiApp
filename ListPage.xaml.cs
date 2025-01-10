@@ -2,6 +2,9 @@ namespace MauiAppBazaSportiva;
 using MauiAppBazaSportiva.Models;
 public partial class ListPage : ContentPage
 {
+    public Reservation Reservation { get; set; }
+    public DateTime ReservationDate { get; set; }
+    public int Duration { get; set; }
     public string LastName { get; set; }
     public string FirstName { get; set; }
     public Membership Membership { get; set; } 
@@ -42,9 +45,12 @@ public partial class ListPage : ContentPage
 
         var membershipsTask = App.Database.GetMemberMembershipsAsync(member.ID);
         var trainersTask = App.Database.GetMemberTrainersAsync(member.ID);
-        await Task.WhenAll(membershipsTask, trainersTask);
+        var reservationTask=App.Database.GetReservationsForMemberAsync(member.ID);
+        await Task.WhenAll(membershipsTask, trainersTask,reservationTask);
         listView.ItemsSource = await membershipsTask;
         listViewTrainer.ItemsSource = await trainersTask;
+        listViewReservation.ItemsSource = await reservationTask;
+        
     }
 
     async void OnChooseButtonClickedTrainer(object sender, EventArgs e)
@@ -56,5 +62,14 @@ public partial class ListPage : ContentPage
         });
 
     }
-    
+    async void OnChooseButtonClickedReservation(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ReservationPage((Member)
+       this.BindingContext)
+        {
+            BindingContext = new Member()
+        });
+
+    }
+
 }

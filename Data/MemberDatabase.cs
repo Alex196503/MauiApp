@@ -17,6 +17,8 @@ namespace MauiAppBazaSportiva.Data
             _database.CreateTableAsync<Member>().Wait();
             _database.CreateTableAsync<Membership>().Wait();
             _database.CreateTableAsync<Trainer>().Wait();
+            _database.CreateTableAsync<Reservation>().Wait();
+
 
         }
         public Task<List<Member>> GetMembersAsync()
@@ -100,8 +102,37 @@ namespace MauiAppBazaSportiva.Data
                                         + "on T.ID = M.TrainerID where M.ID = ?", memberid);
 
         }
+        public Task<int> SaveReservationAsync(Reservation reservation)
+        {
+            if (reservation.ID != 0)
+            {
+                return _database.UpdateAsync(reservation);
+            }
+            else
+            {
+                return _database.InsertAsync(reservation);
+            }
+        }
+        public Task<int> DeleteReservationAsync(Reservation reservation)
+        {
+            return _database.DeleteAsync(reservation);
+        }
+        public Task<List<Reservation>> GetReservationsAsync()
+        {
+            return _database.Table<Reservation>().ToListAsync();
+        }
+        public Task<List<Reservation>> GetReservationsForMemberAsync(int memberId)
+        {
+            return _database.QueryAsync<Reservation>(
+                "SELECT R.ID, R.Duration, R.ReservationDate from Reservation R " 
+                +"INNER JOIN Member M ON R.ID = M.ReservationID " +
+                "WHERE M.ID = ?",
+                memberId);
+        }
+
     }
 }
+
 
     
 

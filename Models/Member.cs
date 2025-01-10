@@ -11,9 +11,9 @@ namespace MauiAppBazaSportiva.Models
 {
     public class Member
     {
-        [PrimaryKey,AutoIncrement]
+        [PrimaryKey, AutoIncrement]
         public int ID { get; set; }
-        [MaxLength(250),Unique]
+        [MaxLength(250), Unique]
         public string FirstName { get; set; }
         public string LastName { get; set; }
         public string Email { get; set; }
@@ -27,6 +27,11 @@ namespace MauiAppBazaSportiva.Models
         [ManyToOne]
         public Trainer Trainer { get; set; }
         public string Name => $"{FirstName} {LastName}";
-
+        [SQLiteNetExtensions.Attributes.ForeignKey(typeof(Reservation))]
+        public int ReservationID { get; set; }
+        [OneToOne]
+        public Reservation Reservation { get; set; }
+        public int Duration { get; set; }
+        public DateTime ReservationDate { get; set; }
     }
 }
