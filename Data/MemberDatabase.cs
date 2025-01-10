@@ -18,6 +18,7 @@ namespace MauiAppBazaSportiva.Data
             _database.CreateTableAsync<Membership>().Wait();
             _database.CreateTableAsync<Trainer>().Wait();
             _database.CreateTableAsync<Reservation>().Wait();
+            _database.CreateTableAsync<Review>().Wait();
 
 
         }
@@ -129,8 +130,35 @@ namespace MauiAppBazaSportiva.Data
                 "WHERE M.ID = ?",
                 memberId);
         }
+        public Task<int> SaveReviewAsync(Review review)
+        {
+            if (review.ID != 0)
+            {
+                return _database.UpdateAsync(review);
+            }
+            else
+            {
+                return _database.InsertAsync(review);
+            }
+        }
+        public Task<int> DeleteReviewAsync(Review review)
+        {
+            return _database.DeleteAsync(review);
+        }
+        public Task<List<Review>> GetReviewsAsync()
+        {
+            return _database.Table<Review>().ToListAsync();
+        }
+        public Task <List<Review>> GetReviewForTrainersAsync(int trainerid)
+        {
+            return _database.QueryAsync<Review>(
+     "SELECT R.ID, R.Comment, R.Rating, R.ReviewDate FROM Review R " +
+     "INNER JOIN Trainer T ON R.ID=T.ReviewID " +
+     "WHERE T.ID = ?", trainerid);
 
+        }
     }
+
 }
 
 

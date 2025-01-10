@@ -15,5 +15,8 @@ namespace MauiAppBazaSportiva.Models
         public string Specialization { get; set; }
         [OneToMany]
         public List<Member> Members{ get; set; }
+        [OneToMany]
+        public List<Review>? Reviews { get; set; }
+        public int ReviewID { get; set; }
     }
 }

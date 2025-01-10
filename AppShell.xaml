@@ -17,7 +17,7 @@
         <ShellContent
  Title="Membrii bazei sportive"
  ContentTemplate="{DataTemplate local:IntrariMembri}"
- />
+ />
     </TabBar>
 
 </Shell>

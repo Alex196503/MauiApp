@@ -5,6 +5,9 @@ namespace MauiAppBazaSportiva;
 public partial class TrainerPage : ContentPage
 {
     Member m1;
+    public String Comment { get; set; }
+    public int Rating { get; set; }
+    public Review Review { get; set; }
 	public TrainerPage(Member member)
 	{
 		InitializeComponent();
@@ -42,9 +45,21 @@ public partial class TrainerPage : ContentPage
             await DisplayAlert("Eroare", "Selectati un trainer inainte de a continua!", "OK");
         }
     }
+    async void OnChooseButtonClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new ReviewPage((Trainer)
+       this.BindingContext)
+        {
+            BindingContext = new Review()
+        });
+
+    }
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        listViewTrainer.ItemsSource = await App.Database.GetTrainersAsync();
+        var trainer = (Trainer)BindingContext;
+        var reviews = await App.Database.GetReviewForTrainersAsync(trainer.ID);
+        listViewReviews.ItemsSource = reviews;
     }
+
 }

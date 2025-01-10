@@ -80,6 +80,9 @@
 	  <MauiXaml Update="ReservationPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="ReviewPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="TrainerPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

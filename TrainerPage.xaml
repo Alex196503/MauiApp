@@ -4,7 +4,6 @@
              x:Class="MauiAppBazaSportiva.TrainerPage"
              Title="TrainerPage">
     <ScrollView>
-        
         <StackLayout Margin="20">
             <Editor Placeholder="Introduceti numele antrenorului" Margin="20"
                     Text="{Binding Name}"
@@ -15,7 +14,6 @@
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto"/>
                     <RowDefinition Height="Auto"/>
-                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*"/>
@@ -23,17 +21,34 @@
                 </Grid.ColumnDefinitions>
                 <Button Text="Salveaza antrenorul" MaximumWidthRequest="200" Clicked="OnSaveButtonClicked"/>
                 <Button Grid.Column="1" Text="Sterge antrenorul" MaximumWidthRequest="200" Clicked="OnDeleteButtonClicked"/>
-                <ListView Grid.Row="1" Grid.Column="0" x:Name="listViewTrainer" Margin="20" IsRefreshing="True">
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <TextCell Text="{Binding Name}"/>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-                <Button Grid.Row="2" Grid.Column="0" Text="Adauga in lista antrenorilor"
-MaximumWidthRequest="300"
- Clicked="OnAddButtonClicked" />
             </Grid>
+            <ListView x:Name="listViewTrainer" Margin="20" IsRefreshing="True" ItemsSource="{Binding Trainer}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <TextCell Text="{Binding Name}" />
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Adauga in lista antrenorilor" MaximumWidthRequest="300" Clicked="OnAddButtonClicked" />
+            <Label Text="Review-uri primite de antrenor" FontAttributes="Bold" Margin="20"/>
+            <ListView x:Name="listViewReviews" Margin="20" HeightRequest="200" IsRefreshing="True" ItemsSource="{Binding Review}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="Rating:" FontAttributes="Bold" />
+                                <Label Text="{Binding Rating}" />
+
+                                <Label Text="Comentariu:" FontAttributes="Bold" />
+                                <Label Text="{Binding Comment}" />
+
+                         
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Button Text="Adauga un review pt antrenor" MaximumWidthRequest="300" Clicked="OnChooseButtonClicked"/>
         </StackLayout>
-        </ScrollView>
+    </ScrollView>
 </ContentPage>
