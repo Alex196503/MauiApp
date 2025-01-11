@@ -2,6 +2,8 @@ namespace MauiAppBazaSportiva;
 using MauiAppBazaSportiva.Models;
 public partial class ListPage : ContentPage
 {
+    public Court Court { get; set; }
+    public string Type { get; set; }
     public Reservation Reservation { get; set; }
     public DateTime ReservationDate { get; set; }
     public int Duration { get; set; }

@@ -19,6 +19,7 @@ namespace MauiAppBazaSportiva.Data
             _database.CreateTableAsync<Trainer>().Wait();
             _database.CreateTableAsync<Reservation>().Wait();
             _database.CreateTableAsync<Review>().Wait();
+            _database.CreateTableAsync<Court>().Wait();
 
 
         }
@@ -66,7 +67,7 @@ namespace MauiAppBazaSportiva.Data
         {
             return _database.Table<Membership>().ToListAsync();
         }
- 
+
         public Task<List<Membership>> GetMemberMembershipsAsync(int memberid)
         {
             return _database.QueryAsync<Membership>(
@@ -96,7 +97,7 @@ namespace MauiAppBazaSportiva.Data
         {
             return _database.Table<Trainer>().ToListAsync();
         }
-        public Task <List<Trainer>>GetMemberTrainersAsync(int memberid)
+        public Task<List<Trainer>> GetMemberTrainersAsync(int memberid)
         {
             return _database.QueryAsync<Trainer>("select T.ID, T.Name, T.Specialization from Trainer T "
                                         + "inner join Member M "
@@ -125,8 +126,8 @@ namespace MauiAppBazaSportiva.Data
         public Task<List<Reservation>> GetReservationsForMemberAsync(int memberId)
         {
             return _database.QueryAsync<Reservation>(
-                "SELECT R.ID, R.Duration, R.ReservationDate from Reservation R " 
-                +"INNER JOIN Member M ON R.ID = M.ReservationID " +
+                "SELECT R.ID, R.Duration, R.ReservationDate from Reservation R "
+                + "INNER JOIN Member M ON R.ID = M.ReservationID " +
                 "WHERE M.ID = ?",
                 memberId);
         }
@@ -149,7 +150,7 @@ namespace MauiAppBazaSportiva.Data
         {
             return _database.Table<Review>().ToListAsync();
         }
-        public Task <List<Review>> GetReviewForTrainersAsync(int trainerid)
+        public Task<List<Review>> GetReviewForTrainersAsync(int trainerid)
         {
             return _database.QueryAsync<Review>(
      "SELECT R.ID, R.Comment, R.Rating, R.ReviewDate FROM Review R " +
@@ -157,10 +158,35 @@ namespace MauiAppBazaSportiva.Data
      "WHERE T.ID = ?", trainerid);
 
         }
+        public Task<int> SaveCourtAsync(Court court)
+        {
+            if (court.ID != 0)
+            {
+                return _database.UpdateAsync(court);
+            }
+            else
+            {
+                return _database.InsertAsync(court);
+            }
+        }
+        public Task<int> DeleteCourtAsync(Court court)
+        {
+            return _database.DeleteAsync(court);
+        }
+        public Task<List<Court>> GetCourtsAsync()
+        {
+            return _database.Table<Court>().ToListAsync();
+        }
+        public Task <List<Court>> GetCourtsForReservation(int reservationid)
+        {
+            return _database.QueryAsync<Court>(
+                "select C.ID,C.Type,C.Size from Court C"
+                + " inner join Reservation R "
+                + "on C.ID=R.CourtID where R.ID=?", reservationid);
+           
+        }
     }
-
 }
 
 
-    
 

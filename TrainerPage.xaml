@@ -38,11 +38,10 @@
                             <StackLayout Padding="10">
                                 <Label Text="Rating:" FontAttributes="Bold" />
                                 <Label Text="{Binding Rating}" />
-
                                 <Label Text="Comentariu:" FontAttributes="Bold" />
                                 <Label Text="{Binding Comment}" />
 
-                         
+                        
                             </StackLayout>
                         </ViewCell>
                     </DataTemplate>

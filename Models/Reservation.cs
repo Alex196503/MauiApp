@@ -18,6 +18,10 @@ namespace MauiAppBazaSportiva.Models
         public int MemberID { get; set; }
         [OneToOne]
         public Member Member { get; set; }
-        
+        [ForeignKey(typeof(Court))]
+        public int CourtID { get; set; }
+        [ManyToOne]
+        public Court Court { get; set; }
+
     }
 }

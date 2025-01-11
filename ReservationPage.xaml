@@ -5,17 +5,13 @@
              Title="ReservationPage">
     <ScrollView>
         <StackLayout Margin="20">
-
-
-            <Label Text="Durata(ore):" FontAttributes="Bold" />
-            <Entry 
-    Text="{Binding Reservation.Duration, Mode=TwoWay}" 
-    Keyboard="Numeric"
-    Placeholder="Introduceti durata in ore"
-    Margin="20"
-    HeightRequest="50" x:Name="DurationEntry"/>
-
-
+            <Label Text="Durata (ore):" FontAttributes="Bold" />
+            <Entry Text="{Binding Reservation.Duration, Mode=TwoWay}" 
+                   Keyboard="Numeric"
+                   Placeholder="Introduceti durata in ore"
+                   Margin="20"
+                   HeightRequest="50"
+                   x:Name="DurationEntry"/>
             <Grid>
                 <Grid.RowDefinitions>
                     <RowDefinition Height="Auto" />
@@ -28,7 +24,7 @@
                 </Grid.ColumnDefinitions>
                 <Button Text="Salveaza rezervarea" MaximumWidthRequest="200" Clicked="OnSaveButtonClicked" />
                 <Button Grid.Column="1" Text="Sterge rezervarea" MaximumWidthRequest="200" Clicked="OnDeleteButtonClicked" />
-                <ListView Grid.Row="1" Grid.Column="0" x:Name="listViewReservation" Margin="20" IsRefreshing="True" >
+                <ListView Grid.Row="1" Grid.Column="0" x:Name="listViewReservation" Margin="20" IsRefreshing="True">
                     <ListView.ItemTemplate>
                         <DataTemplate>
                             <TextCell Text="{Binding ReservationDate}" Detail="{Binding Duration}" />
@@ -36,9 +32,34 @@
                     </ListView.ItemTemplate>
                 </ListView>
                 <Button Grid.Row="2" Grid.Column="0" Text="Adauga rezervarea pentru membru"
-                        MaximumWidthRequest="300"
-                        Clicked="OnAddButtonClicked" />
+                        MaximumWidthRequest="300" Clicked="OnAddButtonClicked" />
             </Grid>
+
+            <ListView x:Name="listViewCourts"
+          VerticalOptions="Center"
+          ItemsSource="{Binding Court}" 
+          SelectedItem="{Binding Court}"
+          Margin="10,0,0,0">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Padding="10">
+                                <Label Text="Rezervare teren" 
+                           FontAttributes="Bold"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+
+                                <Label Text="{Binding Type}" 
+                           FontAttributes="Italic"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Center" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+            <Button Text="Vezi terenurile disponibile" MaximumWidthRequest="300" Clicked="OnChooseButtonClicked"/>
         </StackLayout>
     </ScrollView>
 </ContentPage>
