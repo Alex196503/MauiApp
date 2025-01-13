@@ -10,9 +10,11 @@ namespace MauiAppBazaSportiva.Data
 {
     public class MemberDatabase
     {
+        IRestService restService;
         readonly SQLiteAsyncConnection _database;
-        public MemberDatabase(string dbPath)
+        public MemberDatabase(IRestService service,string dbPath)
         {
+            restService = service;
             _database = new SQLiteAsyncConnection(dbPath);
             _database.CreateTableAsync<Member>().Wait();
             _database.CreateTableAsync<Membership>().Wait();
@@ -185,6 +187,12 @@ namespace MauiAppBazaSportiva.Data
                 + "on C.ID=R.CourtID where R.ID=?", reservationid);
            
         }
+        public Task<List<Member>> GetMembersFromRestAsync()
+        {
+            return restService.RefreshDataAsync();
+        }
+       
+        
     }
 }
 

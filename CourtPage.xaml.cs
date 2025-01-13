@@ -36,9 +36,9 @@ public partial class CourtPage : ContentPage
 
             if (currentReservation != null)
             {
-                currentReservation.CourtID = selectedCourt.ID;  // Seteazã corect ID-ul terenului
+                currentReservation.CourtID = selectedCourt.ID;
 
-                await App.Database.SaveReservationAsync(currentReservation);  // Salveazã rezervarea
+                await App.Database.SaveReservationAsync(currentReservation);  
 
                 await Navigation.PopAsync();
             }
