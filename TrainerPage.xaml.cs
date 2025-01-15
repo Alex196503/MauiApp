@@ -57,9 +57,18 @@ public partial class TrainerPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
+        listViewTrainer.ItemsSource = await App.Database.GetTrainersAsync();
         var trainer = (Trainer)BindingContext;
-        var reviews = await App.Database.GetReviewForTrainersAsync(trainer.ID);
-        listViewReviews.ItemsSource = reviews;
+        if (trainer != null)
+        {
+            var reviews = await App.Database.GetReviewForTrainersAsync(trainer.ID);
+            listViewReviews.ItemsSource = reviews;
+        }
+        else
+        {
+            listViewReviews.ItemsSource = null; 
+        }
     }
+
 
 }

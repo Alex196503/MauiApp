@@ -16,7 +16,7 @@ namespace MauiAppBazaSportiva
 
             DependencyService.Register<IRestService,RestService>();
 
-            MainPage = new NavigationPage(new IntrariMembri());
+            MainPage = new AppShell();
         }
     }
 }

@@ -53,9 +53,8 @@ public partial class ReservationPage : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-
+        listViewReservation.ItemsSource = await App.Database.GetReservationsAsync();
         var member = (Member)BindingContext;
-
         if (member?.Reservation != null)
         {
             var reservation = member.Reservation;
@@ -63,10 +62,6 @@ public partial class ReservationPage : ContentPage
             var courts = await App.Database.GetCourtsForReservation(reservation.ID);
 
             listViewCourts.ItemsSource = courts;
-        }
-        else
-        {
-            await DisplayAlert("Eroare", "Nu existã o rezervare asociatã membrului.", "OK");
         }
     }
 
