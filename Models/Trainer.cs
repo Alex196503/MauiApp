@@ -18,5 +18,6 @@ namespace MauiAppBazaSportiva.Models
         [OneToMany]
         public List<Review>? Reviews { get; set; }
         public int ReviewID { get; set; }
+        
     }
 }

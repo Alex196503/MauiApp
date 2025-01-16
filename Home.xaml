@@ -8,10 +8,59 @@
             <Image Source="dji_0972_1.jpg"
  SemanticProperties.Description="Baza sportiva"
 HeightRequest="64" />
-            <Label FontSize="25" FontAttributes="Bold" Text="Aplicatie web" VerticalOptions="End" />
-            <Label FontSize="25" Text="v1.0" VerticalOptions="End" />
+            <Label
+                Text="Informatii despre baza sportiva"
+                FontSize="24"
+                FontAttributes="Bold"
+                TextColor="DarkBlue"
+                VerticalOptions="Center"
+                />
+          
         </HorizontalStackLayout>
-        <Label Text="Această aplicație va facilita accesul și gestionarea participării la activitățile desfășurate într-o bază sportivă, oferind utilizatorilor posibilitatea de a se înregistra, rezerva facilități și monitoriza programul de activități disponibile." />
+        <VerticalStackLayout Spacing="10">
+                <Label Text=" Adresa : Strada Alexandru Vaida-Voievod,judetul Cluj,Cartierul Gheorgheni"
+       FontSize="18"
+       TextColor="Black"
+                       Margin="0,10,0,10"
+                       LineBreakMode="WordWrap"/>
 
+
+                <Button Text="Vezi Harta" BackgroundColor="Purple" Grid.Column="1"  
+MaximumWidthRequest="200" TextColor="White" CornerRadius="10" Padding="10" FontSize="18" WidthRequest="150" HorizontalOptions="Center"
+                    Clicked="OnShowMapButtonClicked"></Button>
+                <Label Text="Program:"
+                   FontSize="20"
+                       FontAttributes="Bold"
+                       TextColor="DarkGreen"
+                       Margin="0,20,0,5"/>
+            <Label Text="Decembrie – martie: 
+            De duminică până joi între orele 10:00 – 20:00
+            Vineri și sâmbătă între orele 10:00 – 21:00."
+                   FontSize="16"
+                   TextColor="Black"
+                   LineBreakMode="WordWrap"/>
+            <Label Text="Aprilie – noiembrie: 
+De luni până vineri între orele 09:00 – 22:00
+Sâmbătă și duminică între orele 10:00 – 22:00."
+               FontSize="16"
+               TextColor="Black"
+               LineBreakMode="WordWrap" />
+
+            <Label Text =" Informații utile: Accesul în perimetrul Bazei Sportive Gheorgheni este liber și GRATUIT pentru toți cetățenii. Pentru a utiliza terenurile cu acces controlat este necesară crearea unui cont pe platforma online de rezervări.
+Rezervările se pot crea doar pentru săptămâna în curs și săptămâna următoare, în limita disponibilității terenurilor. Accesul în sala de popice și tenis de masă se face cu echipament sportiv și încălțăminte de sală curată, de schimb. Pe toate terenurile, jucătorii trebuie să își asigure obiecte de joc (mingi, palete, rachete)"
+            FontSize="20"
+                   FontAttributes="Bold"
+       TextColor="Black"
+                   Margin="0,20,0,5"/>
+            <Label Text="Accesul în perimetrul Bazei Sportive Gheorgheni este liber și GRATUIT pentru toți cetățenii. 
+Pentru a utiliza terenurile cu acces controlat este necesară crearea unui cont pe platforma online de rezervări.
+Rezervările se pot crea doar pentru săptămâna în curs și săptămâna următoare, în limita disponibilității terenurilor. 
+Accesul în sala de popice și tenis de masă se face cu echipament sportiv și încălțăminte de sală curată, de schimb. 
+Pe toate terenurile, jucătorii trebuie să își asigure obiecte de joc (mingi, palete, rachete)."
+               FontSize="16"
+               TextColor="Black"
+               LineBreakMode="WordWrap"
+               Margin="0,0,0,20" />
+        </VerticalStackLayout>
     </VerticalStackLayout>
 </ContentPage>
